@@ -1,0 +1,25 @@
+.mapContent .mapZoom{position: relative; width: 1192px; height: 600px; overflow: hidden; margin: 20px auto; border: 4px solid #dcc6a1;}
+.mapZoom .mapInfo{position: absolute; left: 0px; top: 0px; cursor: all-scroll;}
+.mapZoom .mapInfo .mapMark{position: absolute; left: 0; top: 0; width: 100%; height: 100%; z-index: 200;}
+.mapZoom .mapInfo .mapMark .mark{display: block; position: absolute; width: 1.3%; height: 1.5%; background: yellow; opacity:0;filter:alpha(opacity=0); cursor: pointer;}
+.mapZoom .mapInfo .mapImg{position: absolute;}
+.mapZoom .zoom_btn{position: absolute; display: block; cursor: pointer; z-index: 299; bottom: 10px; width: 32px; height: 32px; font-size: 0; cursor: pointer; background-repeat: no-repeat;}
+.mapZoom .zoom_in{left: 10px; background-image: url(../images/simulation_zoom_in.jpg);}
+.mapZoom .zoom_out{left: 47px; background-image: url(../images/simulation_zoom_out.jpg);}
+.mapZoom .zoom_zero{left: 84px; background-image: url(../images/simulation_zoom_zero.jpg);}
+.mapZoom .zoom_fit{left: 121px; background-image: url(../images/simulation_zoom_fit1.jpg);}
+.mapZoom .zoom_fit.small{background-image: url(../images/simulation_zoom_fit2.jpg);}
+.mapZoom .zoom_status{display: block; position: absolute; z-index: 299; bottom: 10px; left: 158px; width: 51px; height: 30px; text-align: center; line-height: 30px; background: white; border: 1px solid #52352d; font-size: 16px; color: #52352d;}
+.mapZoom .zoomMask{display: none; position: absolute; left: 50%; top: 50%; z-index: 299; width: 440px; padding: 16px; background: rgba(0,0,0,0.4);  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#7f000000,endColorstr=#7f000000);}
+.mapZoom .zoomMask .zoomMask_head{width: 100%; height: 90px; background: #eee6d1;}
+.mapZoom .zoomMask .zoomMask_content{width: 392px; height: 120px; padding: 15px 24px; background: #952023;}
+.mapZoom .zoomMask .zoomColumn{font-size: 24px; line-height: 24px; padding: 12px 10px; color: #952023; font-weight: bold;}
+.mapZoom .zoomMask .zoomHeading{padding: 0 6px;}
+.mapZoom .zoomMask .zoomHeading>span{display: inline-block; vertical-align: top;}
+.mapZoom .zoomMask .zoomId{width: 30px; height: 30px; text-align: center; line-height: 30px; color: white; font-size: 18px; border-radius: 50%;}
+.mapZoom .zoomMask .zoomTitle{width: 390px; font-size: 30px; line-height: 30px; color: #52352d;}
+.mapZoom .zoomMask .zoomTxt{width: 100%; height: 100%; overflow: auto; font-size: 14px; color: #FFF; line-height: 28px;}
+.mapZoom .zoomMask .zoomMaskClose{position: absolute; top: 0px; right: 0px; width: 50px; height: 50px; background: url(../images/zoomMaskClose.jpg) no-repeat; cursor: pointer;}
+.mapZoom .zoomMask .zoomImg{display: none; width: 100%; height: 290px;}
+.mapZoom .zoomLoading{position: absolute; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background-color: white; font-size: 0; background-image: url(../images/loading.gif); background-repeat: no-repeat; background-position: center center;}
+/*.mapZoom .mapInfo.transition{transition: all 0.3s; -webkit-transition: all 0.3s; -moz-transition: all 0.3s; -ms-transition: all 0.3s;}*/

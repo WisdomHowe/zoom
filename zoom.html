@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>基于jquery开发图片缩放</title>
+		<link rel="stylesheet" type="text/css" href="styles/base.css" />
+		<link rel="stylesheet" type="text/css" href="styles/themes.css" />
+		<script type="text/javascript" src="script/jquery.js"></script>
+		<script type="text/javascript" src="script/jquery.mousewheel.min.js"></script>
+		<script type="text/javascript" src="script/ZoomPlugin.js"></script>
+	</head>
+
+	<body>
+
+		<div class="mapContent">
+			<div class="mapZoom">
+				<div class="mapInfo">
+					<!--图片-->
+					<img class="mapImg" ondragstart="return false;" src="images/simulation_map.jpg" />
+					
+					<!--标注容器-->
+					<div class="mapMark"></div> 
+				</div>
+				
+				<!--弹窗容器-->
+				<div class="zoomMask">
+					<img class="zoomImg" src="" />
+					<div class="zoomMask_head">
+						<p class="zoomColumn"></p>
+						<p class="zoomHeading">
+							<span class="zoomId"></span>
+							<span class="zoomTitle"></span>
+						</p>
+					</div>
+					<div class="zoomMask_content">
+						<p class="zoomTxt"></p>
+					</div>
+					<div class="zoomMaskClose"></div>
+				</div>
+				
+				<!--控制缩放、显示缩放比例控件-->
+				<span class="zoom_in zoom_btn">+</span>
+				<span class="zoom_out zoom_btn">-</span>
+				<span class="zoom_zero zoom_btn">1:1</span>
+				<span class="zoom_fit zoom_btn"></span>
+				<span class="zoom_status"></span>
+				
+				<!--loading-->
+				<span class="zoomLoading"></span>
+			</div>
+		</div>
+		
+		<script type="text/javascript">
+			var data = [{
+					"id": "1",
+					"x": "2078",
+					"y": "1064",
+					"column": "读城市历史",
+					"title": "南越王宫博物馆",
+					"txt": "西汉时期南越国的宫殿御苑所在地，是迄今为止发现的年代最早、保留最完好的中国宫苑遗迹，也是广州2200多年城市发展的历史见证。现为全国重点文物保护单位。",
+					"color": "#db5755",
+					"img": "images/jt/01.jpg"
+				},
+				{
+					"id": "2",
+					"x": "1878",
+					"y": "924",
+					"column": "读城市历史",
+					"title": "秦代造船遗址",
+					"txt": "为秦始皇一岭南时期秦军专门建造船只的场所。现为全国重点文物保护单位。",
+					"color": "#db5755",
+					"img": "images/jt/02.jpg"
+				},
+				{
+					"id": "3",
+					"x": "1071",
+					"y": "2189",
+					"column": "读城市历史",
+					"title": "南越国土水关遗址",
+					"txt": "我国目前考古发现年代最早、规模最大、保存最好的木构水闸遗址。现为全国重点文物保护单位。",
+					"color": "#db5755",
+					"img": "images/jt/03.jpg"
+				},
+				{
+					"id": "4",
+					"x": "657",
+					"y": "1805",
+					"column": "读城市历史",
+					"title": "药洲遗址",
+					"txt": "五代南汉开国皇帝刘壟于此炼丹求仙药，故称药洲，为南汉的皇家园林。",
+					"color": "#db5755",
+					"img": "images/jt/04.jpg"
+				},
+				{
+					"id": "5",
+					"x": "1512",
+					"y": "1652",
+					"column": "读城市历史",
+					"title": "拱北楼遗址",
+					"txt": "建于唐朝，初作军事岗哨用，后塍“双底门”。元代起安放中国现存最大、最完整的“铜壶滴漏”计时器。",
+					"color": "#db5755",
+					"img": "images/jt/05.jpg"
+				},
+				{
+					"id": "6",
+					"x": "1506",
+					"y": "1320",
+					"column": "读城市历史",
+					"title": "北京路千年古道遗址",
+					"txt": "遗址叠压着唐至民国时期11层路面，印证广州城中心始终位于北京路一带。",
+					"color": "#db5755",
+					"img": "images/jt/06.jpg"
+				},
+				{
+					"id": "7",
+					"x": "2417",
+					"y": "1325",
+					"column": "读城市历史",
+					"title": "万木草堂",
+					"txt": "1891年，中国近代资产阶级维新派康有为在邱氏书室设万木草堂，宣传改良主义思想，成为戊戌变法策源地。",
+					"color": "#db5755",
+					"img": "images/jt/07.jpg"
+				},
+				{
+					"id": "8",
+					"x": "1193",
+					"y": "2175",
+					"column": "读城市历史",
+					"title": "大佛寺",
+					"txt": "始建于南汉，大殿供奉三尊铜铸大佛，为“岭南之冠”，故名为大佛寺。",
+					"color": "#db5755",
+					"img": "images/jt/08.JPG"
+				},
+				{
+					"id": "9",
+					"x": "2172",
+					"y": "876",
+					"column": "读城市历史",
+					"title": "城隍庙",
+					"txt": "建于明洪武三年（1370年），是明清时期岭南最大的城隍庙，清雍正年间，升格为都城隍庙。",
+					"color": "#db5755",
+					"img": "images/jt/09.jpg"
+				},
+				{
+					"id": "10",
+					"x": "1827",
+					"y": "1610",
+					"column": "读城市历史",
+					"title": "“府学双泉”古井",
+					"txt": "位于古代番山东南角广州府学宫后面，水源来自番山，因井底有两个活泉眼得名，是目前广州城内罕有的活泉。",
+					"color": "#db5755",
+					"img": ""
+				}
+			];
+
+			var zoom = new ZoomPlugin({
+				el: ".mapZoom",
+				label: true, //是否启用标注
+				initScaleSize: 55, //初始显示缩放的大小  注：如果初始比例小于原图位于容器的比例  则改成最小比例
+				maxScaleSize: 300, //最大缩放比例
+				proportion: 5, //每次增减的比例
+				data: data
+			});
+		</script>
+	</body>
+
+</html>
